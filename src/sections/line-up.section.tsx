@@ -92,7 +92,7 @@ export const LineUpSection = () => {
         alt=""
         width={260}
         height={227}
-        className="absolute -left-6 sm:-left-4 md:-left-2 lg:left-2 top-[46%] md:top-[44%] -translate-y-1/2 w-[70px] sm:w-[100px] md:w-[150px] lg:w-[200px] -rotate-6 pointer-events-none select-none"
+        className="absolute -left-6 sm:-left-4 md:-left-2 lg:left-2 top-[62%] md:top-[60%] -translate-y-1/2 w-[70px] sm:w-[100px] md:w-[150px] lg:w-[200px] -rotate-6 pointer-events-none select-none"
       />
 
       {/* Music notes - right, between sections */}
