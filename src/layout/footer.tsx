@@ -5,7 +5,7 @@ const navigation = [
   { label: "Date", href: "#date" },
   { label: "Line up", href: "#line-up" },
   { label: "Histoire", href: "#story" },
-  { label: "Merchandising", href: "#merchandising" },
+  { label: "Merchandising", href: "https://egalclothing.com/collections/cuicuitedays-2k26" },
   { label: "Billeterie", href: "https://link.cuicuitedays.fr/tickets-website-2k26" },
 ];
 

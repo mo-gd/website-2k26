@@ -90,7 +90,7 @@ export const StorySection = () => {
             <button
               key={year}
               onClick={() => handleSelect(videoId)}
-              className={`font-salted text-base w-24 py-1 text-center rounded-xl border-2 border-[#1a1a1a]/50 transition-all duration-200 hover:scale-105 active:scale-95 ${
+              className={`font-salted text-sm sm:text-base px-4 h-9 pb-1 rounded-lg border-2 border-[#1a1a1a]/50 transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center cursor-pointer ${
                 activeAftermovie === videoId
                   ? "bg-[#FFDD93] text-[#1a1a1a] shadow-md"
                   : "bg-[#FFDD93]/75 text-[#1a1a1a] hover:bg-[#FFDD93]"

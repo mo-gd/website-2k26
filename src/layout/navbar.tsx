@@ -7,7 +7,7 @@ const navLinks = [
   { href: "#line-up", label: "Line up" },
   { href: "#date", label: "Date" },
   { href: "#story", label: "Histoire" },
-  { href: "#merchandising", label: "Merch" },
+  { href: "https://egalclothing.com/collections/cuicuitedays-2k26", label: "Merch" },
 ];
 
 const ticketUrl = "https://link.cuicuitedays.fr/tickets-website-2k26";
@@ -77,6 +77,8 @@ export const Navbar = () => {
               key={link.href}
               className="hover:scale-105 tracking-widest transition-all duration-200 inline-block text-sm font-light"
               href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
             >
               {link.label}
             </Link>
@@ -130,6 +132,8 @@ export const Navbar = () => {
                 key={link.href}
                 className="tracking-widest text-sm font-light transition-colors duration-200 whitespace-nowrap"
                 href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                 onClick={closeMenu}
               >
                 {link.label}
