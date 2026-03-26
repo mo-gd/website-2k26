@@ -49,6 +49,7 @@ export const LandingSection = () => {
     <section
       ref={sectionRef}
       id="#"
+      data-navbar-theme="light"
       className="bg-gradient-landing pt-20 md:pt-36 pb-8 md:pb-16 flex items-center flex-col overflow-hidden"
     >
       {/* Countdown */}

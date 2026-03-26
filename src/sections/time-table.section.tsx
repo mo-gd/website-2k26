@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const TimeTableSection = () => {
   return (
-    <section id="date" className="bg-[#EDB2D0] min-h-dvh flex items-center flex-col gap-12 md:gap-20 relative overflow-x-clip py-16 md:py-26 px-4">
+    <section id="date" data-navbar-theme="light" className="bg-[#EDB2D0] min-h-dvh flex items-center flex-col gap-12 md:gap-20 relative overflow-x-clip py-16 md:py-26 px-4">
       <div className="flex items-center flex-col gap-8 md:gap-12 text-[#FDFCEB] z-10">
         <h2 className="font-light tracking-wider text-2xl sm:text-3xl md:text-5xl flex items-center gap-4 md:gap-8">
           VENDREDI

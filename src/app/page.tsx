@@ -1,6 +1,5 @@
 import { LandingSection } from "#/sections/landing.section";
 import { LineUpSection } from "#/sections/line-up.section";
-import { SponsorsSection } from "#/sections/sponsors.section";
 import { StorySection } from "#/sections/story.section";
 import { TimeTableSection } from "#/sections/time-table.section";
 
@@ -14,8 +13,6 @@ const HomePage = () => {
       <LineUpSection />
 
       <StorySection />
-
-      <SponsorsSection />
     </main>
   );
 };

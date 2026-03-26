@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useCallback, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 
 type Artist = {
   time: string;
@@ -40,26 +40,31 @@ export const LineUpSection = () => {
   }, []);
 
   const renderArtistRow = (artist: Artist) => (
-    <Fragment key={artist.name}>
-      <span className="justify-self-end text-right pr-1.5 sm:pr-2 md:pr-3 font-mono text-[10px] sm:text-xs md:text-base lg:text-lg tracking-widest whitespace-nowrap self-baseline">
-        {artist.time}
-      </span>
+    <div key={artist.name} className="flex items-baseline">
+      <div className="flex-1 flex justify-end pr-1.5 sm:pr-2 md:pr-3">
+        <span className="font-mono text-[10px] sm:text-xs md:text-base lg:text-lg tracking-widest whitespace-nowrap">
+          {artist.time}
+        </span>
+      </div>
       <span
-        className="justify-self-center font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl whitespace-nowrap text-center self-baseline transition-opacity duration-200 lg:cursor-none"
+        className="font-bold text-lg sm:text-xl md:text-3xl lg:text-4xl whitespace-nowrap transition-opacity duration-200 lg:cursor-none"
         onMouseEnter={() => setHoveredArtist(artist)}
         onMouseLeave={() => setHoveredArtist(null)}
       >
         {artist.name}
       </span>
-      <span className="justify-self-start text-left pl-1.5 sm:pl-2 md:pl-3 text-[7px] sm:text-[9px] md:text-xs lg:text-sm tracking-wider whitespace-nowrap self-baseline">
-        {artist.genre}
-      </span>
-    </Fragment>
+      <div className="flex-1 flex justify-start pl-1.5 sm:pl-2 md:pl-3">
+        <span className="text-[7px] sm:text-[9px] md:text-xs lg:text-sm tracking-wider whitespace-nowrap">
+          {artist.genre}
+        </span>
+      </div>
+    </div>
   );
 
   return (
     <section
       id="line-up"
+      data-navbar-theme="dark"
       className="bg-[#FDFCEB] relative overflow-x-clip py-16 md:py-24 text-[#CC1D1D] font-roboto"
       onMouseMove={handleMouseMove}
     >
@@ -123,10 +128,7 @@ export const LineUpSection = () => {
         {/* VENDREDI */}
         <h3 className="tracking-[0.3em] text-base sm:text-lg md:text-2xl font-light mb-5 md:mb-8 text-center">VENDREDI</h3>
 
-        <div
-          className="grid gap-y-3 sm:gap-y-4 md:gap-y-5 mb-4 md:mb-6 w-fit mx-auto items-baseline"
-          style={{ gridTemplateColumns: "auto auto auto" }}
-        >
+        <div className="flex flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mb-4 md:mb-6">
           {vendrediArtists.map(renderArtistRow)}
         </div>
 
@@ -138,10 +140,7 @@ export const LineUpSection = () => {
         {/* SAMEDI */}
         <h3 className="tracking-[0.3em] text-base sm:text-lg md:text-2xl font-light mb-5 md:mb-8 text-center">SAMEDI</h3>
 
-        <div
-          className="grid gap-y-3 sm:gap-y-4 md:gap-y-5 mb-8 md:mb-12 w-fit mx-auto items-baseline"
-          style={{ gridTemplateColumns: "auto auto auto" }}
-        >
+        <div className="flex flex-col gap-y-3 sm:gap-y-4 md:gap-y-5 mb-8 md:mb-12">
           {samediArtists.map(renderArtistRow)}
         </div>
 

@@ -7,15 +7,43 @@ const navLinks = [
   { href: "#line-up", label: "Line up" },
   { href: "#date", label: "Date" },
   { href: "#story", label: "Histoire" },
-  { href: "#sponsors", label: "Sponsors" },
   { href: "#merchandising", label: "Merch" },
 ];
 
 const ticketUrl = "https://link.cuicuitedays.fr/tickets-website-2k26";
 
+const useNavbarTheme = () => {
+  const [theme, setTheme] = useState<"light" | "dark">("light");
+
+  useEffect(() => {
+    const update = () => {
+      const navY = 60;
+      const sections = document.querySelectorAll<HTMLElement>("section[data-navbar-theme]");
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= navY && rect.bottom > navY) {
+          const value = section.dataset.navbarTheme;
+          if (value === "light" || value === "dark") setTheme(value);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  return theme;
+};
+
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const theme = useNavbarTheme();
+
+  const isDark = theme === "dark";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -34,15 +62,20 @@ export const Navbar = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
+  const textColor = isDark ? "text-[#1a1a1a]" : "text-[#FDFCEB]";
+  const glassBg = isDark ? "bg-black/10" : "bg-white/10";
+
+  const glassHover = isDark ? "hover:bg-black/20" : "hover:bg-white/20";
+
   return (
     <>
       {/* Desktop navbar — centered pill */}
       <header className={`hidden lg:block fixed top-6 left-1/2 -translate-x-1/2 z-50 transition-all duration-300 ${scrolled ? "top-4" : "top-6"}`}>
-        <nav className="flex items-center gap-8 bg-[#6784BE]/40 border border-[#FDFCEB]/20 shadow-lg backdrop-blur-xl rounded-full py-3 px-10 text-[#FDFCEB]">
+        <nav className={`flex items-center gap-8 ${glassBg} shadow-lg backdrop-blur-xl rounded-full py-3 px-10 ${textColor} transition-colors duration-500`}>
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              className="hover:scale-105 tracking-widest transition-all duration-200 inline-block text-sm font-light hover:text-white"
+              className="hover:scale-105 tracking-widest transition-all duration-200 inline-block text-sm font-light"
               href={link.href}
             >
               {link.label}
@@ -50,7 +83,7 @@ export const Navbar = () => {
           ))}
 
           <Link
-            className="tracking-widest inline-block text-sm font-bold hover:text-white transition-colors duration-200"
+            className="tracking-widest inline-block text-sm font-bold transition-colors duration-200"
             target="_blank"
             href={ticketUrl}
           >
@@ -65,14 +98,14 @@ export const Navbar = () => {
           <Link
             href={ticketUrl}
             target="_blank"
-            className="bg-[#6784BE]/60 border border-[#FDFCEB]/20 backdrop-blur-xl rounded-full py-3 px-6 sm:px-8 text-[#FDFCEB] text-sm font-bold tracking-widest hover:bg-[#6784BE]/80 transition-colors duration-200"
+            className={`${glassBg} backdrop-blur-xl rounded-full py-3 px-6 sm:px-8 ${textColor} text-sm font-bold tracking-widest ${glassHover} transition-colors duration-500`}
           >
             Billetterie
           </Link>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="bg-[#6784BE]/60 border border-[#FDFCEB]/20 backdrop-blur-xl rounded-full p-3 text-[#FDFCEB] hover:bg-[#6784BE]/80 transition-colors duration-200"
+            className={`${glassBg} backdrop-blur-xl rounded-full p-3 ${textColor} ${glassHover} transition-colors duration-500`}
             aria-label="Menu"
           >
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -85,7 +118,7 @@ export const Navbar = () => {
 
         {/* Dropdown menu */}
         <div
-          className={`absolute top-full right-4 sm:right-6 mt-3 bg-[#6784BE]/90 border border-[#FDFCEB]/20 backdrop-blur-xl rounded-2xl py-4 px-6 text-[#FDFCEB] transition-all duration-300 origin-top-right ${
+          className={`absolute top-full right-4 sm:right-6 mt-3 ${glassBg} backdrop-blur-xl rounded-2xl py-4 px-6 ${textColor} transition-all duration-500 origin-top-right ${
             isOpen
               ? "opacity-100 scale-100 pointer-events-auto"
               : "opacity-0 scale-95 pointer-events-none"
@@ -95,7 +128,7 @@ export const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.href}
-                className="tracking-widest text-sm font-light hover:text-white transition-colors duration-200 whitespace-nowrap"
+                className="tracking-widest text-sm font-light transition-colors duration-200 whitespace-nowrap"
                 href={link.href}
                 onClick={closeMenu}
               >
